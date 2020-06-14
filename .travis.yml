@@ -1,0 +1,61 @@
+---
+language: python
+services:
+  - docker
+
+env:
+  global:
+    - VERSION=0.0.1
+  matrix:
+    - IMAGE=docker-ansible-ubuntu2004 FROM_DISTRO=ubuntu FROM_TAG=20.04
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+        # create Dockerfile from template
+        - cat Dockerfile.template | envsubst > Dockerfile
+        # docker_build
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME"
+          --password-stdin
+
+        # docker_login
+        - docker build --tag testing . || travis_terminate 1;
+        - docker images
+        - docker ps -a
+
+        # docker_test - TODO stop after testing
+        - docker run --privileged -d --name testing -v
+          /sys/fs/cgroup:/sys/fs/cgroup:ro testing
+        - docker ps -a
+        - docker exec --tty testing env TERM=vt100 ansible --version ||
+          travis_terminate 1;
+        - docker exec --tty testing env TERM=vt100 ansible-lint --version ||
+          travis_terminate 1;
+        - docker exec --tty testing env TERM=vt100 yamllint --version ||
+          travis_terminate 1;
+        - docker exec --tty testing env TERM=vt100 prettier --version ||
+          travis_terminate 1;
+        - docker exec --tty testing env TERM=vt100 molecule --version ||
+          travis_terminate 1;
+        # docker_push
+        - docker tag testing $DOCKER_USERNAME/${IMAGE}:${VERSION}
+        - docker images
+        - docker push $DOCKER_USERNAME/${IMAGE}:${VERSION}
+    - stage: test
+      script:
+        # docker_pull
+        - docker images
+        - docker ps -a
+        - docker run --privileged -d --name testing -v
+          /sys/fs/cgroup:/sys/fs/cgroup:ro $DOCKER_USERNAME/${IMAGE}:${VERSION}
+        - docker ps -a
+        - docker exec --tty testing env TERM=vt100 ansible --version
+    - state: tag master
+      if: branch = master
+      script:
+        # tag version as master and push
+        - docker pull $DOCKER_USERNAME/${IMAGE}:${VERSION}
+        - docker tag $DOCKER_USERNAME/${IMAGE}:${VERSION}
+          $DOCKER_USERNAME/${IMAGE}:master
+        - docker push $DOCKER_USERNAME/${IMAGE}:master
