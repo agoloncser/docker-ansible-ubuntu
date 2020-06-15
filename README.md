@@ -1,8 +1,8 @@
-# docker-ansible-ubuntu2004
+# docker-ansible-ubuntu
 
-[![Build Status](https://travis-ci.com/agoloncser/docker-ansible-ubuntu2004.svg?branch=master)](https://travis-ci.com/agoloncser/docker-ansible-ubuntu2004)
+[![Build Status](https://travis-ci.com/agoloncser/docker-ansible-ubuntu.svg?branch=master)](https://travis-ci.com/agoloncser/docker-ansible-ubuntu)
 
-Docker image for testing ansible code.
+Ubuntu-based docker images for testing Ansible code.
 
 Includes:
 - ansible
