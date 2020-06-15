@@ -7,3 +7,4 @@ env:
     - FROM_DISTRO=ubuntu
   jobs:
     - IMAGE=docker-ansible-ubuntu2004 FROM_TAG=20.04
+    - IMAGE=docker-ansible-ubuntu1804 FROM_TAG=18.04
