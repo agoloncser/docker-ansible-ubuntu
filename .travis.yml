@@ -2,6 +2,8 @@
 version: ~> 1.0
 import: agoloncser/travis-shared-configs:docker-ansible-matrix.yml
 env:
-  global: VERSION=1.${TRAVIS_BUILD_NUMBER} FROM_DISTRO=ubuntu
+  global:
+    - VERSION=1.${TRAVIS_BUILD_NUMBER}
+    - FROM_DISTRO=ubuntu
   jobs:
     - IMAGE=docker-ansible-ubuntu2004 FROM_TAG=20.04
