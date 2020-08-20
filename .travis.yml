@@ -10,3 +10,7 @@ env:
     - IMAGE=docker-ansible-ubuntu2004 FROM_TAG=20.04
     - IMAGE=docker-ansible-ubuntu1804 FROM_TAG=18.04
     - IMAGE=docker-ansible-debian10 FROM_TAG=10
+
+jobs:
+  allow_failures:
+    - env: IMAGE=docker-ansible-debian10 FROM_TAG=10
