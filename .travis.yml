@@ -14,3 +14,4 @@ env:
 jobs:
   allow_failures:
     - env: FROM_DISTRO=ubuntu IMAGE=docker-ansible-debian10 FROM_TAG=10
+    - env: IMAGE=docker-ansible-ubuntu1804 FROM_TAG=18.04
