@@ -25,24 +25,5 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
 /lib/systemd/system/plymouth* \
 /lib/systemd/system/systemd-update-utmp*
 
-# ansible deps
-RUN apt-get update
-RUN apt-get install -y sudo python3-pip curl
-RUN pip3 install ansible molecule yamllint ansible-lint
-
-# # prettier.js
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-RUN sudo apt update && sudo apt install -y yarn
-# RUN apt-get install -y yarnpkg
-RUN yarn global add prettier --dev --exact
-
-# # Sudo: Disable requiretty.
-RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
-
-# # Ansible: Install Ansible inventory file.
-RUN mkdir -p /etc/ansible
-RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
-
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["/lib/systemd/systemd"]
