@@ -4,12 +4,7 @@
 
 Ubuntu-based docker images for testing Ansible code.
 
-Includes:
-- ansible
-- ansible-lint
-- Molecule
-- YAMLlint
-- Prettier.js
+Includes systemd.
 
 ## Running this image
 
