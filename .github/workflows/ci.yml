@@ -27,6 +27,13 @@ jobs:
             FROM_TAG: 18.04
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: envsubst
+        run: |
+          if [ -e Dockerfile.template ] ; then cat Dockerfile.template | envsubst > Dockerfile ; fi
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
