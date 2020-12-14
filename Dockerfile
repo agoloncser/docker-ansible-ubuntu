@@ -1,3 +1,5 @@
+ARG FROM_DISTRO=ubuntu
+ARG FROM_TAG=20.04
 FROM ${FROM_DISTRO}:${FROM_TAG}
 MAINTAINER https://github.com/agoloncser
 ENV container docker
