@@ -19,7 +19,7 @@ jobs:
       matrix:
         include:
           - IMAGE: docker-ansible-ubuntu2010
-            FROM_TAG: 20.10
+            FROM_TAG: "20.10"
             # experimental: true
           - IMAGE: docker-ansible-ubuntu2004
             FROM_TAG: 20.04
