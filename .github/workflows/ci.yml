@@ -8,14 +8,13 @@ on:
 
 jobs:
   molecule:
-    # env:
-    #   FROM_DISTRO: ubuntu
+    env:
+      FROM_DISTRO: ubuntu
     runs-on: ubuntu-latest
     # continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       # experimental: [false]
-      FROM_DISTRO: ["ubuntu"]
       matrix:
         include:
           - IMAGE: docker-ansible-ubuntu2010
@@ -56,7 +55,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.IMAGE }}:latest
           build-args: |
             FROM_TAG=${{ matrix.FROM_TAG }}
-            FROM_DISTRO=${{ matrix.FROM_DISTRO }}
+            FROM_DISTRO=$FROM_DISTRO
 
   # galaxy_upload:
   #   runs-on: ubuntu-latest
