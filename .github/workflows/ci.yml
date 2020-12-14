@@ -34,6 +34,8 @@ jobs:
         run: |
           if [ -e Dockerfile.template ] ; then cat Dockerfile.template | envsubst > Dockerfile ; fi
           cat Dockerfile
+        env:
+          FROM_TAG: ${{ matrix.FROM_TAG }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
