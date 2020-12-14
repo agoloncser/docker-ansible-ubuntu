@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        FROM_DISTRO: ubuntu
-        VERSION: 3
+        FROM_DISTRO: ["ubuntu"]
+        VERSION: ["3"]
         include:
           - IMAGE: docker-ansible-ubuntu2010
             FROM_TAG: 20.10
@@ -39,6 +39,7 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ IMAGE }}:latest
+
           # build-args: |
           #   arg1=value1
           #   arg2=value2
