@@ -33,6 +33,7 @@ jobs:
       - name: envsubst
         run: |
           if [ -e Dockerfile.template ] ; then cat Dockerfile.template | envsubst > Dockerfile ; fi
+          cat Dockerfile
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
