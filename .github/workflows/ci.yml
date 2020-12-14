@@ -7,8 +7,9 @@ on:
     - cron: "12 6 * * *"
 jobs:
   molecule:
-    FROM_DISTRO: ["ubuntu"]
-    VERSION: ["3"]
+    env:
+      FROM_DISTRO: ubuntu
+      VERSION: 3
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
