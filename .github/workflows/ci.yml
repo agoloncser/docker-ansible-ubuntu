@@ -9,15 +9,15 @@ on:
 jobs:
   molecule:
     runs-on: ubuntu-latest
-    # continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
-      # experimental: [false]
+      experimental: [false]
       matrix:
         include:
           - IMAGE: docker-ansible-ubuntu2010
             FROM_TAG: "20.10"
-            # experimental: true
+            experimental: true
           - IMAGE: docker-ansible-ubuntu2004
             FROM_TAG: "20.04"
           - IMAGE: docker-ansible-ubuntu1804
