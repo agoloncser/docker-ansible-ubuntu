@@ -7,13 +7,13 @@ on:
     - cron: "12 6 * * *"
 jobs:
   molecule:
+    FROM_DISTRO: ["ubuntu"]
+    VERSION: ["3"]
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
-        FROM_DISTRO: ["ubuntu"]
-        VERSION: ["3"]
         include:
           - IMAGE: docker-ansible-ubuntu2010
             FROM_TAG: 20.10
