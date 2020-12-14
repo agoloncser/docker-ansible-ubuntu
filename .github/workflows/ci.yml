@@ -8,8 +8,6 @@ on:
 
 jobs:
   molecule:
-    env:
-      FROM_DISTRO: ubuntu
     runs-on: ubuntu-latest
     # continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -21,9 +19,9 @@ jobs:
             FROM_TAG: "20.10"
             # experimental: true
           - IMAGE: docker-ansible-ubuntu2004
-            FROM_TAG: 20.04
+            FROM_TAG: "20.04"
           - IMAGE: docker-ansible-ubuntu1804
-            FROM_TAG: 18.04
+            FROM_TAG: "18.04"
 
     steps:
       # - name: Checkout
@@ -55,7 +53,6 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.IMAGE }}:latest
           build-args: |
             FROM_TAG=${{ matrix.FROM_TAG }}
-            FROM_DISTRO=$FROM_DISTRO
 
   # galaxy_upload:
   #   runs-on: ubuntu-latest
