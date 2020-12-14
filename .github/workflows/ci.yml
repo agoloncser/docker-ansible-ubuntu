@@ -5,11 +5,12 @@ on:
   pull_request: {}
   schedule:
     - cron: "12 6 * * *"
+
+env:
+  FROM_DISTRO: ubuntu
+  VERSION: 3
 jobs:
   molecule:
-    env:
-      FROM_DISTRO: ubuntu
-      VERSION: 3
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
     strategy:
