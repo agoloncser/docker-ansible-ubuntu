@@ -13,6 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - IMAGE: docker-ansible-ubuntu2104
+            FROM_TAG: "21.04"
           - IMAGE: docker-ansible-ubuntu2010
             FROM_TAG: "20.10"
           - IMAGE: docker-ansible-ubuntu2004
