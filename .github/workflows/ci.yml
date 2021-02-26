@@ -1,5 +1,5 @@
 ---
-name: Molecule testing
+name: Build docker images
 on:
   push: {}
   pull_request: {}
@@ -7,19 +7,22 @@ on:
     - cron: "12 6 * * 3"
 
 jobs:
-  molecule:
+  build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
-          - IMAGE: docker-ansible-ubuntu2104
+          - IMAGE: "docker-ansible-ubuntu2104"
             FROM_TAG: "21.04"
-          - IMAGE: docker-ansible-ubuntu2010
+
+          - IMAGE: "docker-ansible-ubuntu2010"
             FROM_TAG: "20.10"
-          - IMAGE: docker-ansible-ubuntu2004
+
+          - IMAGE: "docker-ansible-ubuntu2004"
             FROM_TAG: "20.04"
-          - IMAGE: docker-ansible-ubuntu1804
+
+          - IMAGE: "docker-ansible-ubuntu1804"
             FROM_TAG: "18.04"
 
     steps:
