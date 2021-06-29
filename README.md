@@ -1,6 +1,8 @@
 # docker-ansible-ubuntu
 
-[![Build Status](https://travis-ci.com/agoloncser/docker-ansible-ubuntu.svg?branch=master)](https://travis-ci.com/agoloncser/docker-ansible-ubuntu)
+[![Build docker images](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/ci.yml/badge.svg)](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/ci.yml)
+[![Generate tag](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/bump.yml/badge.svg)](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/bump.yml)
+[![Generate tag](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/bump.yml/badge.svg)](https://github.com/agoloncser/docker-ansible-ubuntu/actions/workflows/bump.yml)
 
 Ubuntu-based docker images for testing Ansible code.
 
